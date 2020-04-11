@@ -1,3 +1,13 @@
-h1{
-	color: red;
+h1 {
+    color: green;
+    font-size: 40px;
+}
+
+text, h1, textarea {
+    font-family: Verdana;
+}
+
+#input {
+    margin: auto;
+    width: 500px;
 }
