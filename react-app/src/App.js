@@ -2,45 +2,34 @@ import React, { Component } from "react";
 import * as $ from "jquery";
 import { authEndpoint, clientId, redirectUri, scopes } from "./config";
 import Player from "./Player";
+import hash from "./hash";
 import "./App.css";
+import { getCurrentlyPlaying } from "./SpotifyAPI"
 
-
-// Get the hash of the url
-const hash = window.location.hash
-    .substring(1)
-    .split("&")
-    .reduce(function (initial, item) {
-        if (item) {
-            var parts = item.split("=");
-            initial[parts[0]] = decodeURIComponent(parts[1]);
-        }
-        return initial;
-    }, {});
-window.location.hash = "";
-
+const emptyState = {
+    token: null,
+    item: {
+        album: {
+            images: [{ url: "" }]
+        },
+        name: "",
+        artists: [{ name: "" }],
+        duration_ms: 0
+    },
+    is_playing: "Paused",
+    progress_ms: 0
+};
 
 class App extends Component {
     constructor() {
         super();
-        this.state = {
-            token: null,
-            item: {
-                album: {
-                    images: [{ url: "" }]
-                },
-                name: "",
-                artists: [{ name: "" }],
-                duration_ms: 0
-            },
-            is_playing: "Paused",
-            progress_ms: 0
-        };
+        //To hold data from the api call
+        this.state = emptyState;
         this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
     }
+    //executed immediately our component is mounted 
     componentDidMount() {
-        // Set token
         let _token = hash.access_token;
-
         if (_token) {
             // Set token
             this.setState({
@@ -50,6 +39,7 @@ class App extends Component {
         }
     }
 
+    //TODO: move requests to SpotifyAPI
     getCurrentlyPlaying(token) {
         // Make a call using the token
         $.ajax({
