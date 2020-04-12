@@ -1,0 +1,7 @@
+{
+    "client_id": "d6ae968d77f24d4b89d457f3a763754b",
+    "client_secret": "c2662b6b61a7461faa86a2c166480c05",
+    "redirect_uri": "http://localhost:8888/callback",
+    "state_key": "spotify_auth_state",
+    "scope": "user-read-private user-read-email user-read-playback-state"
+}
