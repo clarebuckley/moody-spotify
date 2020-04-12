@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import "./App.css";
 import getHashParams from "./hash.js";
 import SpotifyWebApi from "spotify-web-api-js";
+import Banner from "./Banner.js";
 
 const spotifyApi = new SpotifyWebApi();
 
 
 class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         const params = getHashParams();
         const token = params.access_token;
         if (token) {
@@ -16,27 +17,55 @@ class App extends Component {
         }
         this.state = {
             loggedIn: token ? true : false,
-            nowPlaying: { name: 'Not Checked', albumArt: '' }
+            nowPlaying: { name: 'Not Checked', albumArt: '' },
+            userDetails: null
         }
     }
 
-    getNowPlaying() {
-        spotifyApi.getMyCurrentPlaybackState()
+    componentDidMount() {
+        this.getUserDetails();
+    }
+
+    getUserDetails = () => {
+        spotifyApi.getMe()
             .then((response) => {
-                this.setState({
-                    nowPlaying: {
-                        name: response.item.name,
-                        albumArt: response.item.album.images[0].url
-                    }
-                });
+                {
+                    this.setState({
+                        userDetails: response
+                    })
+                    console.log(this.state);
+                }
             })
     }
 
-    render() {
+    getNowPlaying = () => {
+        spotifyApi.getMyCurrentPlaybackState()
+            .then((response) => {
+                if (!response) {
+                    this.setState({
+                        nowPlaying: {
+                            name: 'Not currently listening to anything',
+                            albumArt: ''
+                        }
+                    })
+                } else {
+                    this.setState({
+                        nowPlaying: {
+                            name: response.item.name,
+                            albumArt: response.item.album.images[0].url
+                        }
+                    });
+                }
+            })
+    }
+
+    render = () => {
         return (
+
             <div className="App">
-                <a href='http://localhost:8888/login' > Login to Spotify </a>
-                <a href='http://localhost:8888/logout' > Log out of Spotify </a>
+
+                <Banner loggedIn={this.state.loggedIn} userDetails={this.state.userDetails} />
+            
                 <div>
                     Now Playing: {this.state.nowPlaying.name}
                 </div>
@@ -46,7 +75,7 @@ class App extends Component {
                 {this.state.loggedIn &&
                     <button onClick={() => this.getNowPlaying()}>
                         Check Now Playing
-        </button>
+                    </button>
                 }
             </div>
         );
