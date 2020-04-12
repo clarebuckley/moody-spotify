@@ -1,3 +1,4 @@
+
 .header {
     background-color: #42ad74;
     text-align: center;
@@ -6,24 +7,22 @@
     font-size: 50px;
 }
 
-/* The navbar container */
 nav {
-    overflow: hidden;
     background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-    /* Navbar links */
-    nav a {
-        float: right;
-        display: block;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-    }
+.instruction, a {
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    height: 100%;
+    padding: 10px;
+}
 
-        /* Links - change color on hover */
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+}

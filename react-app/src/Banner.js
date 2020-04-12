@@ -1,21 +1,19 @@
 import React from 'react';
 import "./Banner.css";
-import $ from "jquery";
-
 class Banner extends React.Component {
     
-
     render() {
         return (
             <div className="banner">
                 <div className="header">
-                    {
-                        this.props.userDetails ?
-                            <p> Hi {this.props.userDetails.display_name.split(' ')[0]}! How was your day today?</p> :
-                            <p>Log in with Spotify to continue</p>
-                    }
+                     Playlist to match the Daylist
                 </div>
                 <nav>
+                    {
+                        this.props.userDetails ?
+                            <div className="instruction"> Hi {this.props.userDetails.display_name.split(' ')[0]}! Let's make you a playlist</div> :
+                            <div className="instruction">Log in with Spotify to continue</div>
+                    }
                     {
                         this.props.loggedIn &&
                         <a href='http://localhost:8888/logout' > Log out of Spotify </a>
@@ -26,10 +24,8 @@ class Banner extends React.Component {
                     }
                 </nav>
             </div>
-
         )
     }
-
 }
 
 

@@ -3,6 +3,7 @@ import "./App.css";
 import getHashParams from "./hash.js";
 import SpotifyWebApi from "spotify-web-api-js";
 import Banner from "./Banner.js";
+import List from "./List.js"
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -29,12 +30,12 @@ class App extends Component {
     getUserDetails = () => {
         spotifyApi.getMe()
             .then((response) => {
-                {
-                    this.setState({
-                        userDetails: response
-                    })
-                    console.log(this.state);
-                }
+
+                this.setState({
+                    userDetails: response
+                })
+                console.log(this.state);
+
             })
     }
 
@@ -63,14 +64,14 @@ class App extends Component {
         return (
 
             <div className="App">
-
                 <Banner loggedIn={this.state.loggedIn} userDetails={this.state.userDetails} />
-            
+                
+                <List/>
                 <div>
                     Now Playing: {this.state.nowPlaying.name}
                 </div>
                 <div>
-                    <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} />
+                    <img alt="album art" src={this.state.nowPlaying.albumArt} style={{ height: 150 }} />
                 </div>
                 {this.state.loggedIn &&
                     <button onClick={() => this.getNowPlaying()}>
