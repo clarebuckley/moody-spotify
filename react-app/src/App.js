@@ -36,7 +36,6 @@ class App extends Component {
             })
     }
 
-
     render = () => {
         if (this.state.loggedIn) {
             return (

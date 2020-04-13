@@ -1,7 +1,13 @@
-.createPlaylist {
+.actionButton {
     background-color: #42ad74;
     text-align: center;
-    padding: 20px;
     color: white;
     font-size: 20px;
+    padding: 10px;
 }
+
+
+    .actionButton:hover {
+        background-color: #328056;
+        cursor: pointer;
+    }

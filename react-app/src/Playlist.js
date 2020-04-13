@@ -13,7 +13,7 @@ class Playlist extends React.Component {
     render() {
         return (
             <div className="playlist">
-               <div className="createPlaylist">Make me a playlist</div>
+               <div className="actionButton">Make me a playlist</div>
             </div>
         )
     }

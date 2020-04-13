@@ -6,8 +6,9 @@ class List extends React.Component {
         super();
         this.state = {
             listItems: [
-                "I saw a dog",
-                "I slept in past 8pm"
+                "I woke up at 7am",
+                "The suset was pretty",
+                "Yoga cleared my mind"
             ],
             newItem: ""
         }
@@ -57,13 +58,17 @@ class List extends React.Component {
                 <div className="listContainer">
                     {this.state.listItems.map((item, index) => (
                         <div>
-                            <button className="removeButton" onClick={() => {this.removeFromList(index)}}>x</button>
-                            <li key={index}>{item}</li>
+                            <div className="listItem">
+                                <button className="removeButton" onClick={() => {this.removeFromList(index)}}>x</button>
+                                <li key={index}>{item}</li>
+                            </div>
                         </div>
                     ))}
                 </div>
-                <input type="text" id="newItem" onKeyPress={(e) => this.enterPressed(e)} value={this.state.newItem} onChange={(e) => this.handleChange(e)} />
-                <button className="addButton" onClick={this.addToList}>Add to list</button>
+                <div className="inputContainer">
+                    <input type="text" id="newItem" onKeyPress={(e) => this.enterPressed(e)} value={this.state.newItem} onChange={(e) => this.handleChange(e)} />
+                    <div className="addButton" onClick={this.addToList}>Add to list</div>
+                </div>
             </div>
         )
     }

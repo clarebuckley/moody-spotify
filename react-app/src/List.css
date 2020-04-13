@@ -28,11 +28,19 @@ h1 {
 }
 
 .listContainer li:hover {
-    background-color: #f0f0f0;
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2s;
-    -ms-transition: all 0.2s;
-    -o-transition: all 0.2s;
+            background-color: #f0f0f0;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+            -o-transition: all 0.2s;
+        }
+
+.listItem, .inputContainer{
+    display:flex;
+}
+
+li{
+    flex-grow:2;
 }
 
 input {
@@ -40,10 +48,17 @@ input {
     height: 30px;
 }
 
-
 .addButton {
-    width: 100px;
+    flex-grow: 2;
     height: 30px;
+    background-color: #42ad74;
+    text-align: center;
+    color: white;
+    padding: 5px;
+}
+.addButton:hover {
+    background-color: #328056;
+    cursor: pointer;
 }
 
 .deleteButton {
