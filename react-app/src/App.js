@@ -65,8 +65,9 @@ class App extends Component {
 
             <div className="App">
                 <Banner loggedIn={this.state.loggedIn} userDetails={this.state.userDetails} />
-                
-                <List/>
+                {this.state.loggedIn &&
+                    <List />
+                }
                 <div>
                     Now Playing: {this.state.nowPlaying.name}
                 </div>

@@ -6,7 +6,7 @@ class Banner extends React.Component {
         return (
             <div className="banner">
                 <div className="header">
-                     Playlist to match the Daylist
+                     Playlist for the Day-List
                 </div>
                 <nav>
                     {

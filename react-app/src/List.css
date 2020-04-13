@@ -1,4 +1,49 @@
 .list {
     text-align: left;
-    padding: 20px 300px 20px 300px
+    padding: 20px;
+    background-color: white;
+    width: 60%;
+    margin: 0 auto;
+}
+h1 {
+    font-size: 30px;
+    color: #333;
+}
+
+.listContainer {
+    color: #555;
+    font-size: 16px;
+    padding: 0 !important;
+    width: 400px;
+    font-family: courier, monospace;
+    border: 1px solid #dedede;
+    height: 300px;
+    overflow: auto;
+}
+
+    .listContainer li {
+        list-style: none;
+        border-bottom: 1px dotted #ccc;
+        text-indent: 25px;
+        height: auto;
+        padding: 10px;
+        text-transform: capitalize;
+    }
+
+.listContainer li:hover {
+    background-color: #f0f0f0;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+}
+
+input {
+    width: 300px;
+    height: 30px;
+}
+
+button {
+    width: 100px;
+    height: 30px;
 }
