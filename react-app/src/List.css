@@ -43,7 +43,13 @@ input {
     height: 30px;
 }
 
-button {
+
+.addButton {
     width: 100px;
     height: 30px;
+}
+
+.deleteButton {
+    width: 10px;
+    height:auto;
 }

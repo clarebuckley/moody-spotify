@@ -24,6 +24,18 @@ class List extends React.Component {
         }
     }
 
+    removeFromList = (index) => {
+        var updatedItems, items = this.state.listItems;
+        if (items.length == 1) {
+            updatedItems = [];
+        } else {
+            updatedItems = items.splice(index, 1);
+        }  
+        this.setState({
+            listItems: updatedItems
+        })
+    }
+
     handleChange = (event) => {
         this.setState({
             newItem: event.target.value
@@ -37,11 +49,14 @@ class List extends React.Component {
                 <h1>What happened today?</h1>
                 <div className="listContainer">
                     {this.state.listItems.map((item, index) => (
-                        <li key={item.key}>{item}</li>
+                        <div>
+                            <button className="removeButton" onClick={() => {this.removeFromList(index)}}>x</button>
+                            <li key={index}>{item}</li>
+                        </div>
                     ))}
                 </div>
                 <input type="text" id="newItem" value={this.state.newItem} onChange={(e) => this.handleChange(e)} />
-                <button onClick={this.addToList}>Add to list</button>
+                <button className="addButton" onClick={this.addToList}>Add to list</button>
             </div>
         )
     }
