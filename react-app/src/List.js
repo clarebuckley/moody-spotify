@@ -11,20 +11,17 @@ class List extends React.Component {
             ],
             newItem: ""
         }
-        var errors: {
-            name: false,
-            email: true
-        }
-        const isValid = this.state.newItem.length > 0;
     }
 
 
     addToList = () => {
-        var updatedItems = [...this.state.listItems, this.state.newItem];
-        this.setState({
-            listItems: updatedItems
-        })
-        this.state.newItem = "";
+        if (this.state.newItem.length > 0) {
+            var updatedItems = [...this.state.listItems, this.state.newItem];
+            this.setState({
+                listItems: updatedItems
+            })
+            this.state.newItem = "";
+        }
     }
 
     handleChange = (event) => {
@@ -44,7 +41,7 @@ class List extends React.Component {
                     ))}
                 </div>
                 <input type="text" id="newItem" value={this.state.newItem} onChange={(e) => this.handleChange(e)} />
-                <button disabled={!this.isEnabled} onClick={this.addToList}>Add to list</button>
+                <button onClick={this.addToList}>Add to list</button>
             </div>
         )
     }

@@ -30,12 +30,9 @@ class App extends Component {
     getUserDetails = () => {
         spotifyApi.getMe()
             .then((response) => {
-
                 this.setState({
                     userDetails: response
                 })
-                console.log(this.state);
-
             })
     }
 
