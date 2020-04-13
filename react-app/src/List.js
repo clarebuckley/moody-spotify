@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import "./List.css";
+
+
 class List extends React.Component {
 
     constructor() {
@@ -11,7 +13,8 @@ class List extends React.Component {
                 "Yoga cleared my mind"
             ],
             newItem: ""
-        }
+        }  
+        
     }
 
 
@@ -22,7 +25,7 @@ class List extends React.Component {
                 listItems: updatedItems,
                 newItem: ""
             }, () => {
-                this.sendListData();
+                ///send to sibling
             }
             )
         }
@@ -54,9 +57,7 @@ class List extends React.Component {
         } 
     }
 
-    sendListData = () => {
-        this.props.parentCallback(this.state.listItems);
-    }
+
 
 
     render() {
@@ -75,7 +76,11 @@ class List extends React.Component {
                 </div>
                 <div className="inputContainer">
                     <input type="text" id="newItem" onKeyPress={(e) => this.enterPressed(e)} value={this.state.newItem} onChange={(e) => this.handleChange(e)} />
-                    <div className="addButton" onClick={this.addToList}>Add to list</div>
+                
+                            <div className="addButton" onClick={this.addToList}>Add to list</div>
+    
+
+                    
                 </div>
             </div>
         )
