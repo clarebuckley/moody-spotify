@@ -17,7 +17,7 @@ class Playlist extends React.Component {
             var searchTerms = listData.toString().replace(/[ ,]+/, "&20");    //this will be a result of analying the terms for meaning
             spotifyApi.search(searchTerms, ['artist', 'track'], { limit: 5})
                 .then((response) => {
-                    console.log(response.tracks.items[0].album.images[0].url);
+                    console.log(response.tracks.items[0]);
                     this.setState({
                         results: response.tracks.items
                     })
@@ -32,7 +32,7 @@ class Playlist extends React.Component {
                 <div className="resultsContainer">
                     {this.state.results.map((result, index) => (
                         <li className="result">
-                            <img src={result.album.images[2].url} alt="album art" />
+                            <img src={result.album.images[2].url} alt="album art" /> <p> {result.name} - {result.artists[0].name}</p>
                         </li>
                     ))}
                 </div>
