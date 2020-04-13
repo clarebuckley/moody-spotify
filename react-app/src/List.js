@@ -25,16 +25,18 @@ class List extends React.Component {
     }
 
     removeFromList = (index) => {
-        var updatedItems, items = this.state.listItems;
-        if (items.length == 1) {
+        var updatedItems = [...this.state.listItems];
+        if (updatedItems.length == 1) {
             updatedItems = [];
         } else {
-            updatedItems = items.splice(index, 1);
+            updatedItems.splice(index, 1);
         }  
         this.setState({
             listItems: updatedItems
         })
     }
+
+
 
     handleChange = (event) => {
         this.setState({
