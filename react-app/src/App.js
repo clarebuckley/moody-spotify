@@ -19,7 +19,8 @@ class App extends Component {
         }
         this.state = {
             loggedIn: token ? true : false,
-            userDetails: null
+            userDetails: null,
+            listData: ""
         }
     }
 
@@ -36,13 +37,17 @@ class App extends Component {
             })
     }
 
+    listCallbackFunction = (listData) => {
+        this.setState({ listData: listData });
+    }
+
     render = () => {
         if (this.state.loggedIn) {
             return (
                 <div className="App">
                     <Banner loggedIn={this.state.loggedIn} userDetails={this.state.userDetails} />
                     <div className="mainContent">
-                        <List />
+                        <List parentCallback={this.listCallbackFunction} />
                         <Playlist />
                     </div>
                 </div>

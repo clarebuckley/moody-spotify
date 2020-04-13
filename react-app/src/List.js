@@ -19,15 +19,19 @@ class List extends React.Component {
         if (this.state.newItem.length > 0) {
             var updatedItems = [...this.state.listItems, this.state.newItem];
             this.setState({
-                listItems: updatedItems
-            })
-            this.state.newItem = "";
+                listItems: updatedItems,
+                newItem: ""
+            }, () => {
+                this.sendListData();
+            }
+            )
         }
+        
     }
 
     removeFromList = (index) => {
         var updatedItems = [...this.state.listItems];
-        if (updatedItems.length == 1) {
+        if (updatedItems.length === 1) {
             updatedItems = [];
         } else {
             updatedItems.splice(index, 1);
@@ -48,6 +52,10 @@ class List extends React.Component {
         if (code === 13) { //13 is the enter keycode
             this.addToList();
         } 
+    }
+
+    sendListData = () => {
+        this.props.parentCallback(this.state.listItems);
     }
 
 
