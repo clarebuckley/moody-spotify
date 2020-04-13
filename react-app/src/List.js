@@ -36,12 +36,17 @@ class List extends React.Component {
         })
     }
 
-
-
     handleChange = (event) => {
         this.setState({
             newItem: event.target.value
         })
+    }
+
+    enterPressed = (event) => {
+        var code = event.keyCode || event.which;
+        if (code === 13) { //13 is the enter keycode
+            this.addToList();
+        } 
     }
 
 
@@ -57,7 +62,7 @@ class List extends React.Component {
                         </div>
                     ))}
                 </div>
-                <input type="text" id="newItem" value={this.state.newItem} onChange={(e) => this.handleChange(e)} />
+                <input type="text" id="newItem" onKeyPress={(e) => this.enterPressed(e)} value={this.state.newItem} onChange={(e) => this.handleChange(e)} />
                 <button className="addButton" onClick={this.addToList}>Add to list</button>
             </div>
         )
