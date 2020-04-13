@@ -1,4 +1,4 @@
-import React, { Component  } from "react"; 
+import React, { Component } from "react";
 import "./App.css";
 import getHashParams from "./hash.js";
 import SpotifyWebApi from "spotify-web-api-js";
@@ -18,7 +18,8 @@ class App extends Component {
         }
         this.state = {
             loggedIn: token ? true : false,
-            userDetails: null
+            userDetails: null,
+            listData: []
         }
     }
 
@@ -35,15 +36,21 @@ class App extends Component {
             })
     }
 
+    dataFromList = (data) => {
+        this.setState({
+            listData: data
+        })
+    }
+
     render = () => {
         if (this.state.loggedIn) {
             return (
                 <div className="App">
                     <Banner loggedIn={this.state.loggedIn} userDetails={this.state.userDetails} />
                     <div className="mainContent">
-                       
-                            <List />
-                            <Playlist />
+
+                        <List callback={(data) => this.dataFromList(data)}/>
+                        <Playlist listData={this.state.listData}/>
 
                     </div>
                 </div>
