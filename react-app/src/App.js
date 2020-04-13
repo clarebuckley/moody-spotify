@@ -50,7 +50,7 @@ class App extends Component {
                     <div className="mainContent">
 
                         <List callback={(data) => this.dataFromList(data)}/>
-                        <Playlist listData={this.state.listData}/>
+                        <Playlist listData={this.state.listData} spotifyApi={spotifyApi}/>
 
                     </div>
                 </div>

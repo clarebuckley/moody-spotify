@@ -6,8 +6,27 @@
     padding: 10px;
 }
 
-
     .actionButton:hover {
         background-color: #328056;
         cursor: pointer;
     }
+
+.resultsContainer {
+    color: #555;
+    font-size: 16px;
+    padding: 0 !important;
+    width: 400px;
+    font-family: courier, monospace;
+    border: 1px solid #dedede;
+    height: 370px;
+    overflow: auto;
+}
+
+.resultsContainer li {
+    list-style: none;
+    border-bottom: 1px dotted #ccc;
+    text-indent: 25px;
+    height: auto;
+    padding: 10px;
+    text-transform: capitalize;
+}
