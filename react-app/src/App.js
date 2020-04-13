@@ -4,6 +4,7 @@ import getHashParams from "./hash.js";
 import SpotifyWebApi from "spotify-web-api-js";
 import Banner from "./Banner.js";
 import List from "./List.js"
+import Playlist from "./Playlist.js";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -18,7 +19,6 @@ class App extends Component {
         }
         this.state = {
             loggedIn: token ? true : false,
-            nowPlaying: { name: 'Not Checked', albumArt: '' },
             userDetails: null
         }
     }
@@ -36,48 +36,27 @@ class App extends Component {
             })
     }
 
-    getNowPlaying = () => {
-        spotifyApi.getMyCurrentPlaybackState()
-            .then((response) => {
-                if (!response) {
-                    this.setState({
-                        nowPlaying: {
-                            name: 'Not currently listening to anything',
-                            albumArt: ''
-                        }
-                    })
-                } else {
-                    this.setState({
-                        nowPlaying: {
-                            name: response.item.name,
-                            albumArt: response.item.album.images[0].url
-                        }
-                    });
-                }
-            })
-    }
-
     render = () => {
-        return (
-
-            <div className="App">
-                <Banner loggedIn={this.state.loggedIn} userDetails={this.state.userDetails} />
-                {this.state.loggedIn &&
-                    <List />
-                }
-                <div>
-                    Now Playing: {this.state.nowPlaying.name}
+        if (this.state.loggedIn) {
+            return (
+                <div className="App">
+                    <Banner loggedIn={this.state.loggedIn} userDetails={this.state.userDetails} />
+                    <div className="mainContent">
+                        <List />
+                        <Playlist />
+                    </div>
                 </div>
-                <div>
-                    <img alt="album art" src={this.state.nowPlaying.albumArt} style={{ height: 150 }} />
+            )
+        } else {
+            return (
+                <div className="App">
+                    <Banner loggedIn={this.state.loggedIn} userDetails={this.state.userDetails} />
+                    <div className="mainContent">
+                        Log in with a Spotify account using the button in the top right to continue
+                    </div>
                 </div>
-                {this.state.loggedIn &&
-                    <button onClick={() => this.getNowPlaying()}>
-                        Check Now Playing
-                    </button>
-                }
-            </div>
-        );
+            );
+        }
     }
 }
 

@@ -11,8 +11,8 @@ class Banner extends React.Component {
                 <nav>
                     {
                         this.props.userDetails ?
-                            <div className="instruction"> Hi {this.props.userDetails.display_name.split(' ')[0]}! Let's make you a playlist</div> :
-                            <div className="instruction">Log in with Spotify to continue</div>
+                            <div className="instruction">Hi {this.props.userDetails.display_name.split(' ')[0]}! Let's make you a playlist</div> :
+                            <div className="instruction"></div>
                     }
                     {
                         this.props.loggedIn &&

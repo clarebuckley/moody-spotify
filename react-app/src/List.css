@@ -1,10 +1,7 @@
 .list {
     text-align: left;
-    padding: 20px;
-    background-color: white;
-    width: 60%;
-    margin: 0 auto;
 }
+
 h1 {
     font-size: 30px;
     color: #333;
@@ -21,14 +18,14 @@ h1 {
     overflow: auto;
 }
 
-    .listContainer li {
-        list-style: none;
-        border-bottom: 1px dotted #ccc;
-        text-indent: 25px;
-        height: auto;
-        padding: 10px;
-        text-transform: capitalize;
-    }
+.listContainer li {
+    list-style: none;
+    border-bottom: 1px dotted #ccc;
+    text-indent: 25px;
+    height: auto;
+    padding: 10px;
+    text-transform: capitalize;
+}
 
 .listContainer li:hover {
     background-color: #f0f0f0;
@@ -51,5 +48,5 @@ input {
 
 .deleteButton {
     width: 10px;
-    height:auto;
+    height: auto;
 }
