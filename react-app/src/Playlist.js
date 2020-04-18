@@ -12,12 +12,20 @@ class Playlist extends React.Component {
         }
     }
 
+    getSearchTerms = (text) => {
+        var ignoreWords = /\b(and|or|for|the|but|i|a|it|of|,|\.|;|:|\?|!|-|'|)\b/g;
+        text = text.replace(ignoreWords, '');
+        text = text.replace(/\d/g, '');
+        text = text.replace(/[ ,]+/g, "&");
+        return text;
+    }
+
     makePlaylist = (listData, spotifyApi) => {
         if (listData.length > 0) {
-            var searchTerms = listData.toString().replace(/[ ,]+/, "&20");    //this will be a result of analying the terms for meaning
-            spotifyApi.search(searchTerms, ['artist', 'track'], { limit: 5})
+            var searchTerms = this.getSearchTerms(listData.toString());    //this will be a result of analying the terms for meaning
+            console.log(searchTerms);
+            spotifyApi.search(searchTerms, ['artist', 'track'], { limit: 5 })
                 .then((response) => {
-                    console.log(response.tracks.items[0]);
                     this.setState({
                         results: response.tracks.items
                     })
